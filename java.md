@@ -44,8 +44,11 @@
 
 ```The characteristics of polymorphism are: ```
 ```a)There is an inheritance (class) / implementation (interface) relationship between the object type and the reference type; ```
+
 ```b)The method called by the reference type variable must be determined during runtime; ```
+
 ```c)polymorphism cannot call a method that only exists in the child class but not in the parent class; ```
+
 ```d)If the child class overrides a method of the parent class, the overridden method in the child class will be executed, and if the child class does not override the method of the parent class, the method in the parent class will be executed.```
 
 ##### 4. Similarities and Differences between interfaces and abstract classes
@@ -58,6 +61,7 @@
 ***Differences:***
 
 ```a)Interfaces are primarily used to constrain the behavior of classes, and if you implement an interface, you will have the corresponding behavior. Abstract classes are primarily used for code reuse and emphasize ownership relationships. A class can only inherit one class, but it can implement multiple interfaces.```
+
 ```b)The member variables in an interface can only be public static final, cannot be modified and must have an initial value, while the member variables in an abstract class are default by default, can be redefined in a subclass, and can be reassigned.```
 
 ##### 5. Exception
@@ -91,16 +95,22 @@
     Common use cases for serialization and deserialization:
 
 ```a)Before an object is transmitted over a network (such as during remote method invocation RPC), it needs to be serialized, and after receiving the serialized object, it needs to be deserialized. ```
+
 ```b)Before storing an object in a file, it needs to be serialized, and when reading an object from a file, it needs to be deserialized. ```
+
 ```c)Before storing an object in a database (such as Redis), serialization is required, and deserialization is needed when retrieving the object from the cache database. ```
+
 ```d)Serialization is also needed before storing an object in memory, and deserialization is needed when reading the object from memory.```
 ### Collections
 ##### 1. Why Collection?
 ```When we need to save a group of data with the same type, we should use a container to store it. This container is an array. However, using arrays to store objects has certain drawbacks. In actual development, the data types that need to be stored are diverse. Therefore, "collections" are used to store multiple data. The disadvantage of arrays is that once they are declared, their length cannot be changed. At the same time, the data type declared for the array determines the type of data that can be stored in the array. Furthermore, the data stored in arrays is ordered and repeatable, which limits its use. However, collections increase the flexibility of data storage. Java collections can not only be used to store objects of different types and quantities, but can also store data with mapping relationships.```
 ##### 2. List, Set, Queue and Map
 ```a)List (a handy tool for dealing with order): stores elements in an ordered and repeatable manner. ```
+
 ```b)Set (emphasizes uniqueness): stores elements in an unordered and non-repeatable manner. ```
+
 ```c)Queue (a call machine that implements queuing functions): determines the order of precedence according to a specific queuing rule, and stores elements in an ordered and repeatable manner. ```
+
 ```d)Map (an expert in searching using keys): stores key-value pairs, similar to the mathematical function y=f(x), where "x" represents the key and "y" represents the value. Keys are unordered and non-repeatable, while values are unordered and repeatable. Each key can map to at most one value.```
 ### Concurrency
 ##### 1. Process and Thread
@@ -111,17 +121,25 @@
 ```Threads are similar to processes, but they are smaller units of execution. A process can generate multiple threads during its execution. Unlike processes, multiple threads of the same type share the heap and method area resources of the process, but each thread has its own program counter, virtual machine stack, and native method stack. Therefore, when the system generates a thread or switches between threads, the burden is much lighter than that of a process. Because of this, threads are also called lightweight processes.```
 ##### 2. Lifecycle and Status of Threads
 ```NEW: the initial state where the thread is created but not yet called start(). ```
+
 ```RUNNABLE: the running state where the thread is called start() and waiting to run. ```
+
 ```BLOCKED: the blocking state where the thread needs to wait for a lock to be released. ```
+
 ```WAITING: the waiting state where the thread needs to wait for some specific action (notification or interruption) from other threads. ```
+
 ```TIME_WAITING: the timeout waiting state where the thread can return after a specified time rather than waiting indefinitely like WAITING. ```
+
 ```TERMINATED: the terminated state where the thread has finished running.```
 ##### 3.Context switching
 ```During the execution of a thread, it will have its own running conditions and states (also known as context), such as the program counter and stack information mentioned above. When the following situations occur, the thread will exit from the CPU occupancy state. ```
 
 ```a)It voluntarily yields CPU, such as by calling sleep(), wait(), etc. ```
+
 ```b)The time slice is used up, because the operating system prevents a thread or process from occupying the CPU for a long time, causing other threads or processes to starve. ```
+
 ```c)A blocking type of system interrupt is called, such as an IO request, which blocks the thread. ```
+
 ```d)Being terminated or ending execution.```
 
 ```The first three of which will result in a thread switch. Thread switching means that the current thread's context needs to be saved and left to resume the next time the thread occupies the CPU. And load the context of the next thread that will occupy the CPU. This is what is called a context switch.```
@@ -131,11 +149,16 @@
 ***Four necessary conditions for deadlock:***
 
 ```a)Mutual exclusion: The resource can only be occupied by one thread at a time.```
+
 ```b)Hold and wait: A thread holds on to resources while waiting for others.```
+
 ```c)No preemption: Resources cannot be forcibly taken away from a thread that is holding them until it releases them.```
+
 ```d)Circular wait: Several threads form a circular chain waiting for resources.```
 
 ***How to prevent deadlock:***
 ```a)Break the "request and hold" condition: Request for all resources at once. ```
+
 ```b)Break the "non-preemption" condition: If a thread that occupies some resources can't acquire additional resources, it should release the resources it's holding. ```
+
 ```c)Break the "circular wait" condition: Use a certain order for acquiring resources, and release them in the reverse order.```
